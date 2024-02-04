@@ -23,6 +23,10 @@ export class CallsService {
     });
   }
 
+  async findUnique(where: Prisma.CallWhereUniqueInput): Promise<Call> {
+    return this.prisma.call.findUnique({ where });
+  }
+
   async create(data: Prisma.CallCreateInput): Promise<Call> {
     return this.prisma.call.create({ data });
   }
