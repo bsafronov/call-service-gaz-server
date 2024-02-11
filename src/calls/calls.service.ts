@@ -13,7 +13,13 @@ export class CallsService {
     where?: Prisma.CallWhereInput;
     orderBy?: Prisma.CallOrderByWithRelationInput;
   }): Promise<Call[]> {
-    const { skip, take, cursor, where, orderBy } = params;
+    const {
+      skip,
+      take = 50,
+      cursor,
+      where,
+      orderBy = { createdAt: 'desc' },
+    } = params;
     return this.prisma.call.findMany({
       skip,
       take,

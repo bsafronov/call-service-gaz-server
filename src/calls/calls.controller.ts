@@ -1,14 +1,15 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { CallsService } from './calls.service';
+import { FindManyCallsDTO } from './dto/find-many.dto';
 
 @Controller('calls')
 export class CallsController {
   constructor(private callsService: CallsService) {}
 
   @Get()
-  async findAll() {
-    return await this.callsService.findMany({});
+  async findAll(@Query() params: FindManyCallsDTO) {
+    return await this.callsService.findMany(params);
   }
 
   @Get(':id')
